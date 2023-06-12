@@ -56,6 +56,10 @@ This document describes the steps to setup the testbed and deploy a topology.
  - reboot
     - at minimum terminate ssh connection or log out and log back in
     - this is needed for the permissions to be update, otherwise next step will fail
+ - Disable firewall (optional)
+   ```
+   sudo ufw disable
+   ```
 ## Download an cEOS VM image
 We use EOS-based VMs or SONiC VMs to simulate neighboring devices in both virtual and physical testbeds. You can use vEOS or SONiC image as neighbor devices, this method can be found in [vEOS (KVM-based) image](https://github.com/sonic-net/sonic-mgmt/blob/master/docs/testbed/README.testbed.VsSetup.md#option-1-veos-kvm-based-image) and [SONiC image](https://github.com/sonic-net/sonic-mgmt/blob/master/docs/testbed/README.testbed.VsSetup.md#option-3-use-sonic-image-as-neighboring-devices). But for the physical testbed, we recommend using cEOS for **its less consumption of both memory and interaction with the kernel**. To achieve the use of cEOS as neighbor devices, we need to do serveral steps.
 1. Pull debian jessie
