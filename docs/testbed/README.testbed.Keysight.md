@@ -17,6 +17,8 @@ Based on test need there may be multiple topologies possible as shown below :
 - Multiple IxNetwork Topology
 ![](img/multiple-ixnetwork.PNG)
 
+## Virtual Topology
+![](img/multiple-ixnetwork.PNG) Change on your picture
 ## Topology Description
 
 ### Ixia Chassis (IxNetwork)
@@ -91,3 +93,5 @@ Note : The folders within /opt/container/one/ should to be created with read and
 ```
 
 6. Launch IxNetworkWeb using browser `https://container ip`
+
+## Deploy IxNetwork API Server
