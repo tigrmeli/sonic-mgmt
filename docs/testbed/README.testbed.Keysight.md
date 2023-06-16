@@ -150,7 +150,20 @@ GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on iommu=pt"
 GRUB_CMDLINE_LINUX=""
 ```
-### Load Module 1
+
+### Identify the PCI device designated for passthrough to the Load Modules
+1. Get the pci number of the device designated for passthrough
+```
+lspci | grep Ethernet
+```
+Example of output
+```
+04:00.0 Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev 03)
+05:00.0 Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev 03)
+21:00.0 Ethernet controller: Mellanox Technologies MT27700 Family [ConnectX-4]
+21:00.1 Ethernet controller: Mellanox Technologies MT27700 Family [ConnectX-4]
+```
+### Load Module 1 
 
 
 1. Download Ixia_Virtual_Chassis image from:
