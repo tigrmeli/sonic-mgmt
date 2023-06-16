@@ -106,10 +106,29 @@ Example is when the image saved in /vms
  
  ```
 3. If a dhcp server is present we can observe the IP assigned
-   Welcome to Ixia Virtual Chassis
-   CentOS Linux 7
-   Kernel 3.10 on x86_64
-   Management IPv4: 10.36.78.217/22
-   IxOS Version: 9.30.3001.12
-   IxNetwork Protocol Version: 9.30.2212.1
 
+  Welcome to Ixia Virtual Chassis
+  
+  CentOS Linux 7
+  
+  Kernel 3.10 on x86_64
+  
+  Management IPv4: 10.36.78.217/22
+  
+  IxOS Version: 9.30.3001.12
+  
+  IxNetwork Protocol Version: 9.30.2212.1
+
+Note: If the Ixia Virtual Chassis dont take the ip from DHCP server this solutions might help you:
+- Disable firewall
+``` 
+sudo ufw disable
+```
+- Instead of command in step 2
+```
+virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+```
+Try to use this 
+```
+virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --osinfo detect=on,require=off --network bridge=br1,model=virtio --noautoconsole
+```
