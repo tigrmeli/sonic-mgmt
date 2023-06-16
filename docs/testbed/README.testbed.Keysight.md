@@ -18,7 +18,7 @@ Based on test need there may be multiple topologies possible as shown below :
 ![](img/multiple-ixnetwork.PNG)
 
 ## Virtual Topology
-![](img/IxNetwork_Virtual_Topology.png) Change on your picture
+![](img/IxNetwork_Virtual_Topology.png)
 ## Topology Description
 
 ### Ixia Chassis (IxNetwork)
