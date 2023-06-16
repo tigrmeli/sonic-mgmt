@@ -163,6 +163,13 @@ Example of output
 21:00.0 Ethernet controller: Mellanox Technologies MT27700 Family [ConnectX-4]
 21:00.1 Ethernet controller: Mellanox Technologies MT27700 Family [ConnectX-4]
 ```
+So in this case the device designated for passthrough to the Load Modules are:
+
+21:00.0 for Load Module 1 
+
+21:00.1 for Load Module 2
+
+2. 
 ### Load Module 1 
 
 
