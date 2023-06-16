@@ -137,7 +137,17 @@ virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_
 ## Deploy two Ixia Virtual Load Module
 ### Prerequisite  
 1. For PCI forwarding the SR-IOV and IOMMU must be enabled in BIOS
-2. In ubuntu server the 
+2. In ubuntu server the file /etc/default/grub must be edited. Add the arguments "intel_iommu=on iommu=pt" for the GRUB_CMDLINE_LINUX_DEFAULT line
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on iommu=pt"
+Example of file:
+```
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=0
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on iommu=pt"
+GRUB_CMDLINE_LINUX=""
+```
 ### Load Module 1
 
 
