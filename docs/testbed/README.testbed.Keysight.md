@@ -166,9 +166,10 @@ Example of output
 ```
 So in this case the device designated for passthrough to the Load Modules are:
 
-21:00.0 for Load Module 1 
+21:00.0 for Load Module 1 (virt-install require the different syntax 21:00.0 -> pci_0000_21_00_0)
 
-21:00.1 for Load Module 2
+21:00.1 for Load Module 2 (virt-install require the different syntax 21:00.0 -> pci_0000_21_00_1)
+
 
 ### Load Module 1 
 
