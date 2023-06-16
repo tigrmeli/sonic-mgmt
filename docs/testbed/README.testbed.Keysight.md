@@ -100,7 +100,7 @@ Note : The folders within /opt/container/one/ should to be created with read and
 https://downloads.ixiacom.com/support/downloads_and_updates/public/IxVM/9.30/9.30.0.328/Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
 2. Start the VMs:
 
-Example is when the image saved in /vms 
+Example is for the image located in /vms 
  ```
  cd /vms
  sudo tar xjf Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
@@ -173,7 +173,7 @@ So in this case the device designated for passthrough to the Load Modules are:
 https://downloads.ixiacom.com/support/downloads_and_updates/public/IxVM/9.30/9.30.0.328/Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
 2. Start the VMs:
 
-Example is when the image saved in /vms
+Example is for the image located in /vms
 ```
 cd /vms
 sudo tar xjf Ixia_Virtual_Load_Module_IXN_9.30_KVM.qcow2.tar.bz2
