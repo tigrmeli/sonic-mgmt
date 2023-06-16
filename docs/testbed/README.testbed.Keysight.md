@@ -108,19 +108,14 @@ Example is when the image saved in /vms
  
  ```
 3. If a dhcp server is present we can observe the IP assigned
-
+```
   Welcome to Ixia Virtual Chassis
-  
-  CentOS Linux 7
-  
+  CentOS Linux 7  
   Kernel 3.10 on x86_64
-  
   Management IPv4: 10.36.78.217/22
-  
   IxOS Version: 9.30.3001.12
-  
   IxNetwork Protocol Version: 9.30.2212.1
-
+```
 Note: If the Ixia Virtual Chassis dont take the ip from DHCP server this solutions might help you:
 - Disable firewall
 ``` 
@@ -190,7 +185,7 @@ sudo virt-install --name IxLM1 \
 --network bridge=br1,model=virtio \
 --host-device=pci_0000_21_00_0 \
 --serial pty \
---serial unix,path=/tmp/Virtual_Load_Module \
+--serial unix,path=/tmp/Virtual_Load_Module_1 \
 --disk path=/vms/IxLM1.qcow2,device=disk,bus=sata,format=qcow2 \
 --channel unix,target_type=virtio,name=org.qemu.guest_agent.0 \
 --boot hd \
@@ -200,18 +195,12 @@ sudo virt-install --name IxLM1 \
 --force
 
 ```
-
-
-
-
+3. If a dhcp server is present we can observe the IP assigned
+```
 Welcome to Ixia Virtual Load Module
-
 CentOS Linux 7
-
 Kernel 3.10 on x86_64
-
 Management IPv4: 10.36.78.31/22
-
 IxOS Version: 9.30.3001.12
-
 IxVM Status: Active: activating (start) since Fri 2023-06-16 13:54:35 PDT; 1s ago
+```
