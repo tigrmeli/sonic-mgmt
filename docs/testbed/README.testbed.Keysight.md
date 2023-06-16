@@ -138,7 +138,9 @@ virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_
 ### Prerequisite  
 1. For PCI forwarding the SR-IOV and IOMMU must be enabled in BIOS
 2. In ubuntu server the file /etc/default/grub must be edited. Add the arguments "intel_iommu=on iommu=pt" for the GRUB_CMDLINE_LINUX_DEFAULT line
-   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on iommu=pt"
+```
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on iommu=pt"
+```
 Example of file:
 ```
 GRUB_DEFAULT=0
