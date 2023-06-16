@@ -94,4 +94,17 @@ Note : The folders within /opt/container/one/ should to be created with read and
 
 6. Launch IxNetworkWeb using browser `https://container ip`
 
-## Deploy IxNetwork API Server
+## Deploy Ixia_Virtual_Chassis
+
+1. Download Ixia_Virtual_Chassis image from:
+https://downloads.ixiacom.com/support/downloads_and_updates/public/IxVM/9.30/9.30.0.328/Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
+2. Start the VMs:
+Example is when the image saved in /vms 
+```
+sudo tar xjf Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
+virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+
+```
+3. If a dhcp server is present we can observe the IP assigned
+   
+
