@@ -227,7 +227,7 @@ sudo virt-install --name IxLM2 \
 --osinfo detect=on,require=off \
 --force
 ```
-3. If a dhcp server is present we can observe the IP assigned
+2. If a dhcp server is present we can observe the IP assigned
 ```
 Welcome to Ixia Virtual Load Module
 CentOS Linux 7
