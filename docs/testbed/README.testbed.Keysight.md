@@ -167,8 +167,6 @@ So in this case the device designated for passthrough to the Load Modules are:
 
 
 ### Load Module 1 
-
-
 1. Download Ixia_Virtual_Chassis image from:
 https://downloads.ixiacom.com/support/downloads_and_updates/public/IxVM/9.30/9.30.0.328/Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
 2. Start the VMs:
@@ -194,6 +192,40 @@ sudo virt-install --name IxLM1 \
 --osinfo detect=on,require=off \
 --force
 
+```
+3. If a dhcp server is present we can observe the IP assigned
+```
+Welcome to Ixia Virtual Load Module
+CentOS Linux 7
+Kernel 3.10 on x86_64
+Management IPv4: 10.36.78.31/22
+IxOS Version: 9.30.3001.12
+IxVM Status: Active: activating (start) since Fri 2023-06-16 13:54:35 PDT; 1s ago
+```
+
+### Load Module 2 
+1. Start the VMs:
+
+Example is for the image located in /vms
+```
+cd /vms
+sudo tar xjf Ixia_Virtual_Load_Module_IXN_9.30_KVM.qcow2.tar.bz2
+mv Ixia_Virtual_Load_Module_IXN_9.30_KVM.qcow2 IxLM2.qcow2
+
+sudo virt-install --name IxLM2 \
+--ram 4096 \
+--vcpus 4 \
+--network bridge=br1,model=virtio \
+--host-device=pci_0000_21_00_1 \
+--serial pty \
+--serial unix,path=/tmp/Virtual_Load_Module_2 \
+--disk path=/vms/IxLM2.qcow2,device=disk,bus=sata,format=qcow2 \
+--channel unix,target_type=virtio,name=org.qemu.guest_agent.0 \
+--boot hd \
+--vnc \
+--noautoconsole \
+--osinfo detect=on,require=off \
+--force
 ```
 3. If a dhcp server is present we can observe the IP assigned
 ```
