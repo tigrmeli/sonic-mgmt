@@ -94,7 +94,9 @@ Note : The folders within /opt/container/one/ should to be created with read and
 
 6. Launch IxNetworkWeb using browser `https://container ip`
 
-## Deploy Ixia_Virtual_Chassis
+
+## For Virtual Topology next steps are required
+### Deploy Ixia_Virtual_Chassis
 
 1. Download Ixia_Virtual_Chassis image from:
 https://downloads.ixiacom.com/support/downloads_and_updates/public/IxVM/9.30/9.30.0.328/Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
@@ -130,8 +132,8 @@ Try to use this
 virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --osinfo detect=on,require=off --network bridge=br1,model=virtio --noautoconsole
 ```
 
-## Deploy two Ixia Virtual Load Module
-### Prerequisite  
+### Deploy two Ixia Virtual Load Module
+#### Prerequisite  
 1. For PCI forwarding the SR-IOV and IOMMU must be enabled in BIOS
 2. In ubuntu server the file /etc/default/grub must be edited. Add the arguments "intel_iommu=on iommu=pt" for the GRUB_CMDLINE_LINUX_DEFAULT line
 ```
@@ -147,7 +149,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on iommu=pt"
 GRUB_CMDLINE_LINUX=""
 ```
 
-### Identify the PCI device designated for passthrough to the Load Modules
+#### Identify the PCI device designated for passthrough to the Load Modules
 1. Get the pci number of the device designated for passthrough
 ```
 lspci | grep Ethernet
@@ -166,7 +168,7 @@ So in this case the device designated for passthrough to the Load Modules are:
 21:00.1 for Load Module 2 (virt-install require the different syntax 21:00.0 -> pci_0000_21_00_1)
 
 
-### Load Module 1 
+#### Load Module 1 
 1. Download Ixia_Virtual_Chassis image from:
 https://downloads.ixiacom.com/support/downloads_and_updates/public/IxVM/9.30/9.30.0.328/Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
 2. Start the VMs:
@@ -203,7 +205,7 @@ IxOS Version: 9.30.3001.12
 IxVM Status: Active: activating (start) since Fri 2023-06-16 13:54:35 PDT; 1s ago
 ```
 
-### Load Module 2 
+#### Load Module 2 
 1. Start the VMs:
 
 Example is for the image located in /vms
