@@ -152,7 +152,7 @@ GRUB_CMDLINE_LINUX=""
 ```
 lspci | grep Ethernet
 ```
-Example of output
+Output example
 ```
 04:00.0 Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev 03)
 05:00.0 Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev 03)
