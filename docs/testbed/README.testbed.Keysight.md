@@ -234,7 +234,7 @@ sudo virt-install --name IxLM2 \
 Welcome to Ixia Virtual Load Module
 CentOS Linux 7
 Kernel 3.10 on x86_64
-Management IPv4: 10.36.78.31/22
+Management IPv4: 10.36.78.219/22
 IxOS Version: 9.30.3001.12
-IxVM Status: Active: activating (start) since Fri 2023-06-16 13:54:35 PDT; 1s ago
+IxVM Status: Active: activating (start) since Fri 2023-06-16 16:42:40 PDT; 1s ago
 ```
