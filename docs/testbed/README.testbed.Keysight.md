@@ -106,7 +106,7 @@ Example is for the image located in /vms
  ```
  cd /vms
  sudo tar xjf Ixia_Virtual_Chassis_9.30_KVM.qcow2.tar.bz2
- virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+ virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/Ixia_Virtual_Chassis_9.30_KVM.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
  
  ```
 3. If a dhcp server is present we can observe the IP assigned
@@ -125,7 +125,7 @@ sudo ufw disable
 ```
 - Instead of command in step 2
 ```
-virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/Ixia_Virtual_Chassis_9.30_KVM.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
 ```
 Try to use this 
 ```
