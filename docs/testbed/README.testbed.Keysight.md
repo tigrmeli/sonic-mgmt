@@ -183,7 +183,7 @@ sudo virt-install --name IxLM1 \
 --ram 4096 \
 --vcpus 4 \
 --network bridge=br1,model=virtio \
---host-device=pci_0000_21_00_0 \
+--host-device=pci_0000_21_00_0 \      #Change the pci_0000_21_00_0 to yours from "Identify the PCI device designated for passthrough to the Load Modules" section
 --serial pty \
 --serial unix,path=/tmp/Virtual_Load_Module_1 \
 --disk path=/vms/IxLM1.qcow2,device=disk,bus=sata,format=qcow2 \
@@ -218,7 +218,7 @@ sudo virt-install --name IxLM2 \
 --ram 4096 \
 --vcpus 4 \
 --network bridge=br1,model=virtio \
---host-device=pci_0000_21_00_1 \
+--host-device=pci_0000_21_00_1 \       #Change the pci_0000_21_00_1 to yours from "Identify the PCI device designated for passthrough to the Load Modules" section
 --serial pty \
 --serial unix,path=/tmp/Virtual_Load_Module_2 \
 --disk path=/vms/IxLM2.qcow2,device=disk,bus=sata,format=qcow2 \
