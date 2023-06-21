@@ -129,7 +129,7 @@ virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/Ixia_Virtual_
 ```
 Try to use this 
 ```
-virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --osinfo detect=on,require=off --network bridge=br1,model=virtio --noautoconsole
+virt-install --name IxChassis --memory 16000 --vcpus 8 --disk /vms/Ixia_Virtual_Chassis_9.30_KVM.qcow2,bus=sata --import --osinfo detect=on,require=off --network bridge=br1,model=virtio --noautoconsole
 ```
 
 ### Deploy two Ixia Virtual Load Module
