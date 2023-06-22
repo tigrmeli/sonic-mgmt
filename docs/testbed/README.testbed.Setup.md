@@ -196,7 +196,7 @@ Managing the testbed and running tests requires various dependencies to be insta
     ```
     docker load < docker-sonic-mgmt.gz
     docker run -v $PWD:/var/AzDevOps -it docker-sonic-mgmt bash
-    cd var/AzDevOps /sonic-mgmt
+    cd /var/AzDevOps/sonic-mgmt
     ```
 
 **NOTE: From this point on, all steps are ran inside the `docker-sonic-mgmt` container.**
