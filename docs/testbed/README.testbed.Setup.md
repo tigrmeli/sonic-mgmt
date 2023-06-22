@@ -195,8 +195,8 @@ Managing the testbed and running tests requires various dependencies to be insta
 5. Create a `docker-sonic-mgmt` container. Note that you must mount your clone of `sonic-mgmt` inside the container to access the deployment and testing scripts:
     ```
     docker load < docker-sonic-mgmt.gz
-    docker run -v $PWD:/data -it docker-sonic-mgmt bash
-    cd /data/sonic-mgmt
+    docker run -v $PWD:/var/AzDevOps -it docker-sonic-mgmt bash
+    cd var/AzDevOps /sonic-mgmt
     ```
 
 **NOTE: From this point on, all steps are ran inside the `docker-sonic-mgmt` container.**
