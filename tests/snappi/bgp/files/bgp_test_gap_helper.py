@@ -372,13 +372,13 @@ def __tgen_bgp_config(cvg_api,
         flow1.metrics.loss = True
 
     if dual_stack_flag == 1:
-        createTrafficItem("IPv4_1-IPv4_Routes", ipv4_1.name, route_range1.name, 50)
-        createTrafficItem("IPv6_1-IPv6_Routes", ipv6_1.name, route_range2.name, 50)
+        createTrafficItem("IPv4_1-IPv4_Routes", ipv4_1.name, route_range1.name, 5)
+        createTrafficItem("IPv6_1-IPv6_Routes", ipv6_1.name, route_range2.name, 5)
     else:
         if v4_routes == 0:
-            createTrafficItem("IPv6_1-IPv6_Routes", ipv6_1.name, route_range2.name, 100)
+            createTrafficItem("IPv6_1-IPv6_Routes", ipv6_1.name, route_range2.name, 10)
         elif v6_routes == 0:
-            createTrafficItem("IPv4_1-IPv4_Routes", ipv4_1.name, route_range1.name, 100)
+            createTrafficItem("IPv4_1-IPv4_Routes", ipv4_1.name, route_range1.name, 10)
     return conv_config
 
 
@@ -632,7 +632,7 @@ def run_traffic(cvg_api, duthost):
         restart_traffic(cvg_api)
     finally:
         duthost.shell("sudo cp /var/log/syslog /host/scale_syslog.99")
-        var = duthost.shell("sudo cat /host/scale_syslog.99 | grep 'ROUTE THRESHOLD_EXCEEDED'")['stdout']
+        var = duthost.shell("sudo cat /host/scale_syslog.99 | grep 'ROUTE THRESHOLD_EXCEEDED' || true")['stdout']
         if 'ROUTE THRESHOLD_EXCEEDED' in var:  
             logger.info('ROUTE_THRESHOLD_EXCEEDED FOUND in syslog!!!!!!!!')
             warning = 1
@@ -679,6 +679,7 @@ def get_bgp_scalability_result(cvg_api, localhost, bgp_config, flag, duthost):
     flow_stats = get_flow_stats(cvg_api)
     tx_frame_rate = flow_stats[0].frames_tx_rate
     assert tx_frame_rate != 0, "Traffic has not started"
+    stop_traffic(cvg_api) 
     flow_stats = get_flow_stats(cvg_api)
     logger.info('|---- Tx Frame Rate: {} ----|'.format(flow_stats[0].frames_tx_rate))
     logger.info('|---- Rx Frame Rate: {} ----|'.format(flow_stats[0].frames_rx_rate))
@@ -690,7 +691,7 @@ def get_bgp_scalability_result(cvg_api, localhost, bgp_config, flag, duthost):
     else:
         assert float(flow_stats[0].loss) <= 0.1, "FAIL: Loss observerd in traffic item"
         logger.info('PASSED : No Loss observerd in traffic item and {}'.format(msg))
-    stop_traffic(cvg_api)
+    
 
 
 def cleanup_config(duthost):
