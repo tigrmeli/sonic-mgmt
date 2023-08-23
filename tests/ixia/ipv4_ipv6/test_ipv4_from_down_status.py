@@ -27,36 +27,35 @@ def test_ipv4_from_down_status(ixiahost, testbed, duthost):
     ###############################################################
     #                   STEP1: Prepare preconditions
     ###############################################################
-    #          1.1 Set the global result, the default is True,
+    # 1.1 设置全局结果，默认为True, 如果中间检测点不通过，将该值更新为False
     # if the intermediate detection point fails, update the value to False
     result = True
-    #    1.2 Set the test instrument IxNetwork configuration file name,
-    # it is recommended to have the same name as the test case function
+
+    # 1.2 设置测试仪表IxNetwork配置文件名称，建议和测试例函数同名
     configFile = os.path.join(os.path.dirname(__file__), sys._getframe().f_code.co_name + '.ixncfg')
     logger.info(configFile)
 
-    # 1.3 Get topology connection information, intf is used to configure DUT,
-    #       and vlanid is used to update test instrument configuration file
-    logger_msg(u'Get topology connection information.')
+    # 1.3 获取拓扑连接信息，获得intf, vlanid, 其中intf用于配置DUT, vlanid用于更新测试仪表配置文件
+    logger_msg(u'获取拓扑连接信息。')
     intf, vlanid = get_connection_info(testbed)
 
     # 1.4 创建Ixia session, 返回session句柄和测试环境中要使用的端口信息
-    logger_msg(u'Create Ixia Session IPs。')
+    logger_msg(u'配置DUT接口IP地址并UP接口。')
     session, portList = ixiahost
 
     ###############################################################
-    #                   STEP2: Send DUT configuration
+    #                   STEP2: 测试仪表相关操作
     ###############################################################
-    logger_msg(u'The initial DUT is in the shutdown state.')
+    logger_msg(u'初始DUT为shutdown状态。')
     duthost.shell("sudo config interface shutdown {}".format(intf['dut1port1']))
     time.sleep(2)
 
     ###############################################################
-    #        STEP3: Operations related to test instruments
+    #        STEP3: 测试仪表相关操作
     ###############################################################
 
     # 3.1: Load instrument configuration file
-    logger_msg(u'Load the configuration file.')
+    logger_msg(u'加载配置文件。')
     load_config(session, configFile)
 
     # 3.2: 加载仪表端口对应的vlan, 需要更新仪表配置文件中的端口名字

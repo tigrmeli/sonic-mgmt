@@ -43,7 +43,7 @@ def test_ipv4_ipv6_mix(ixiahost, testbed, duthost):
     session, portList = ixiahost
 
     ###############################################################
-    #                   STEP2: Send DUT configuration
+    #                   STEP2: 测试仪表相关操作
     ###############################################################
     logger_msg(u'配置DUT接口IP地址并UP接口。')
     duthost.shell("sudo config interface ip add {} 11.1.1.2/24".format(intf['dut1port1']))
@@ -55,7 +55,7 @@ def test_ipv4_ipv6_mix(ixiahost, testbed, duthost):
     ###############################################################
 
     # 3.1: Load instrument configuration file
-    logger_msg(u'Load the configuration file.')
+    logger_msg(u'加载配置文件。')
     load_config(session, configFile)
 
     # 3.2: 加载仪表端口对应的vlan, 需要更新仪表配置文件中的端口名字
