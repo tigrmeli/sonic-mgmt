@@ -286,7 +286,6 @@ def common_function(testbed, duthost):
     logger.info('common cleanup operations')
 
 
-# This function used to fix error unknow hook (not sure if it correct way to do it)
 @pytest.hookimpl(optionalhook=True)
 def pytest_assert(condition, message=None):
     __tracebackhide__ = True

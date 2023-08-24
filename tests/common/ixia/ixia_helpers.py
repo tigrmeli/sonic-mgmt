@@ -15,10 +15,7 @@ from tests.common.helpers.assertions import pytest_assert
 from tests.common.ixia.common_helpers import ansible_stdout_to_str, get_peer_ixia_chassis
 from tests.common.reboot import logger
 import pandas as pd
-import paramiko
 import re
-import time
-import os
 import sys
 import math
 from ixnetwork_restpy import Files
@@ -952,7 +949,7 @@ def load_config(session, file=''):
         ixnetwork.LoadConfig(Files(file, local_file=True))
     except Exception as err:
         logger.error(err)
-        logger_msg(u'加载配置文件失败，请检查配置', 'ERROR')
+        logger_msg(u'Failed to load the configuration file', 'ERROR')
 
 
 def get_ixia_license(testbed, duthost):
@@ -997,7 +994,7 @@ def modify_vlan(session, portname, vlanid, index='0'):
                 break
     except Exception as err:
         logger.error(err)
-        logger_msg(u'更改vlan失败，请检查配置', 'ERROR')
+        logger_msg(u'Failed to change vlan, please check configuration', 'ERROR')
 
 
 def reserve_port(session, portList, force=True):
@@ -1009,59 +1006,13 @@ def reserve_port(session, portList, force=True):
             if index >= portCntInCfg:
                 break
             portName = ixnetwork.Vport.find()[index].Name
-            logger_msg(u'连接机框 %s，开始抢占端口%s/%s' % (port[0], port[1], port[2]))
+            logger_msg(u'Connecting to the Chassis %s, start to reserve the port%s/%s' % (port[0], port[1], port[2]))
             portMap.Map(IpAddress=port[0], CardId=port[1], PortId=port[2], Name=portName)
         forceTakePortOwnership = force
         portMap.Connect(forceTakePortOwnership)
     except Exception as err:
         logger.error(err)
-        logger_msg(u'占用端口失败，请检查配置', 'ERROR')
-
-
-def send_cmd(dutIP, dutUser, dutPwd, cmd='', waitTime='10000'):
-    returnString = ''
-    dut_ip = dutIP
-    dut_usr = dutUser
-    dut_pwd = dutPwd
-    logger_msg(u'连接DUT进行配置')
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(dut_ip, port=22, username=dut_usr, password=dut_pwd)
-    sendCmd = client.invoke_shell()
-    sendCmd.settimeout(5)
-    send_cmd_log_path = os.path.join(os.getcwd(), 'ixia/result/send_cmd_log')
-    if os.path.exists(send_cmd_log_path) is False:
-        os.makedirs(send_cmd_log_path)
-    tc = os.environ.get('PYTEST_CURRENT_TEST').split(':')[-1].split(' ')[0]
-    filename = tc+'.txt'
-    outputfile = os.path.join(send_cmd_log_path, filename)
-    output_file = open(outputfile, 'a')
-    output_file.write('\n' + 100 * '=' + '\n')
-    if len(cmd) <= 0:
-        return
-
-    for cmdtemp in cmd:
-        if len(cmdtemp.strip()) <= 0:
-            continue
-        sendCmd.send(cmdtemp.strip() + '\n')
-
-    time.sleep(2)
-    try:
-        output = sendCmd.recv(16384).decode('ascii')
-    except Exception as e:
-        output = 'SSHDUT.SendCmdError:' + str(type(e)) + str(e)
-        output_file.close()
-    output_file.write(output.strip())
-    time.sleep(2)
-    returnString = returnString + '\n' + output
-    output_file.close()
-    logger_msg(u'DUT配置完成')
-    try:
-        client.close()
-        client = None
-    except Exception as err:
-        logger_msg('Close SSH ERROR:' + str(type(err)) + 'Message:' + str(err))
-    return returnString
+        logger_msg(u'Failed to reserve the port, please check the configuration', 'ERROR')
 
 
 def send_ping(session, src_ip, dst_ip):
@@ -1093,7 +1044,7 @@ def send_ping(session, src_ip, dst_ip):
         return res[0]
     except Exception as e:
         logger.error(e)
-        logger_msg(u'发送Ping失败，没有找到'+src_ip+u' 地址的interface', 'ERROR')
+        logger_msg(u'Failed to send ping, not found'+src_ip+u' address interface', 'ERROR')
 
 
 def is_ipv4(ip_addr):
