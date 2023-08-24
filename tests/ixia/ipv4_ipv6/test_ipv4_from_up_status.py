@@ -18,7 +18,6 @@ from common.helpers.assertions import pytest_assert
 """
 IP4/IP6 basics
 Configure an ipv4 address on the Layer 3 interface in the up state
-author：forrestfu 202102
 """
 
 
