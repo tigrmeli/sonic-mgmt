@@ -3,8 +3,8 @@ import time
 import os
 import sys
 
-from common.reboot import logger
-from common.ixia.ixia_helpers import (
+from tests.common.reboot import logger
+from tests.common.ixia.ixia_helpers import (
     logger_msg,
     load_config,
     modify_vlan,
@@ -13,11 +13,12 @@ from common.ixia.ixia_helpers import (
     start_protocols,
     get_connection_info
 )
-from common.helpers.assertions import pytest_assert
+from tests.common.helpers.assertions import pytest_assert
 
 """
 IP4/IP6 basics
 Configure an ipv4 address on the Layer 3 interface in the up state
+author：forrestfu 202102
 """
 
 
