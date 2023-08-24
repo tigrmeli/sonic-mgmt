@@ -18,7 +18,6 @@ from tests.common.helpers.assertions import pytest_assert
 """
 IP4/IP6 basics
 Configure both ipv4 and ipv6 addresses on the layer 3 interface
-author：forrestfu 202102
 """
 
 
